@@ -236,7 +236,7 @@ const reply = msg.text.toLowerCase();
 try {
 if (reply === "ya") {
 userStates.set(chatId, 'waiting_for_contact');
-await bot.sendMessage(chatId, "Terima kasih! Data kamu sudah tercatat. Pengurus HIMASI akan menghubungi kamu segera untuk proses selanjutnya.\n\nApakah ada pertanyaan atau hal lain yang ingin ditanyakan?", { parse_mode: 'Markdown' });
+await bot.sendMessage(chatId, "Terima kasih! Data kamu sudah tercatat. Pengurus HIMASI akan menghubungi kamu segera untuk proses selanjutnya.", { parse_mode: 'Markdown' });
 } else {
 userStates.delete(chatId);
 userStates.delete(`${chatId}_order`);
