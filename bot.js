@@ -20,10 +20,11 @@ console.error('Polling error:', error);
 // Data Informasi HIMASI
 // =============================
 const informasiHimasi = {
-"Tentang HIMASI": "Himpunan Mahasiswa Sistem Informasi adalah organisasi mahasiswa yang menghimpun dan mewadahi mahasiswa Program Studi Sistem Informasi di Universitas Bina Sarana Informatika PSDKU Kota Yogyakarta.",
-"Visi": "Menjadi organisasi mahasiswa yang unggul, profesional, dan berkarakter dalam mengembangkan potensi mahasiswa Sistem Informasi untuk kemajuan teknologi informasi.",
-"Misi": "1. Meningkatkan kualitas akademik dan non-akademik mahasiswa\n2. Mengembangkan soft skills dan hard skills mahasiswa\n3. Membangun jaringan dengan dunia industri dan akademisi\n4. Menjalin silaturahmi antar anggota dan alumni",
-"Program Kerja": "1. Seminar dan Workshop Teknologi\n2. Kegiatan Pengabdian Masyarakat\n3. Lomba dan Kompetisi IT\n4. Diskusi dan Sharing Session\n5. Kegiatan Sosial dan Kepedulian"
+"Tentang HIMASI": "HIMASI adalah salah satu organisasi kemahasiswaan yang mewadahi mahasiswa Fakultas Teknik dan Informatika Prodi Sistem Informasi Kampus Yogyakarta Universitas Bina Sarana Informatika dalam bidang akademik maupun non akademik.",
+"Visi": "Menjadikan organisasi dengan meningkatkan jiwa kreatif dan komunikatif yang akan menghasilkan inovasi baru dan berkualitas.",
+"Misi": "1. Melaksanakan pelatihan pendidikan berbasis IT\n2. Mengembangkan soft skills dan hard skills mahasiswa\n3. Membangun jaringan dengan dunia industri dan akademisi\n4. Mengkoordinir kegiatan kemahasiswaan yang bergerak dalam teknologi komputer",
+"Maksud & Tujuan": "1. Sebagai pedoman untuk menjalankan program kerja yang akan direalisasikan\n2. Menjaga eksistensi mahasiswa prodi Sistem Informasi dalam berorganisasi\n3. Meningkatkan kualitas mahasiswa Sistem Informasi sehingga dapat menumbuhkan prestasi akademik\n4. Sebagai delegasi kampus berdasarkan program studi.",
+"Program Kerja": "1. Seminar dan Workshop Teknologi\n2. Menciptakan kreatifikas dari ide mahasiswa\n3. Memiliki desa binaan yang berfokus pada IT\n4. Diskusi dan Sharing Session\n5. Kegiatan Sosial dan Kepedulian"
 };
 // =============================
 // State Management
@@ -75,16 +76,22 @@ case 'tentang_himasi':
 await bot.sendMessage(chatId, `
 📚 *Tentang HIMASI*
 
-*Himpunan Mahasiswa Sistem Informasi (HIMASI)* adalah organisasi mahasiswa yang menghimpun dan mewadahi mahasiswa Program Studi Sistem Informasi di Universitas Bina Sarana Informatika PSDKU Kota Yogyakarta.
+*HIMASI adalah salah satu organisasi kemahasiswaan yang mewadahi mahasiswa Fakultas Teknik dan Informatika Prodi Sistem Informasi Kampus Yogyakarta Universitas Bina Sarana Informatika dalam bidang akademik maupun non akademik.
 
 *Visi:*
-Menjadi organisasi mahasiswa yang unggul, profesional, dan berkarakter dalam mengembangkan potensi mahasiswa Sistem Informasi untuk kemajuan teknologi informasi.
+Menjadikan organisasi dengan meningkatkan jiwa kreatif dan komunikatif yang akan menghasilkan inovasi baru dan berkualitas. 
 
 *Misi:*
-1. Meningkatkan kualitas akademik dan non-akademik mahasiswa
-2. Mengembangkan soft skills dan hard skills mahasiswa
-3. Membangun jaringan dengan dunia industri dan akademisi
-4. Menjalin silaturahmi antar anggota dan alumni
+1. Melaksanakan pelatihan pendidikan berbasis IT
+2. Menciptakan kreatifikas dari ide mahasiswa
+3. Memiliki desa binaan yang berfokus pada IT
+4. Mengkoordinir kegiatan kemahasiswaan yang bergerak dalam teknologi komputer
+
+*Maksud & Tujuan*
+1. Sebagai pedoman untuk menjalankan program kerja yang akan direalisasikan
+2. Menjaga eksistensi mahasiswa prodi Sistem Informasi dalam berorganisasi
+3. Meningkatkan kualitas mahasiswa Sistem Informasi sehingga dapat menumbuhkan prestasi akademik
+4. Sebagai delegasi kampus berdasarkan program studi.
 
 Gunakan menu untuk informasi lebih lanjut! 📖
 `, { parse_mode: 'Markdown', ...mainMenu });
@@ -131,11 +138,10 @@ await bot.sendMessage(chatId, `
 PSDKU Kota Yogyakarta
 Program Studi Sistem Informasi
 
-📧 *Email:* himasi.bsi.yogyakarta@gmail.com
-📱 *Instagram:* @himasi_bsi_yogyakarta
-🌐 *Website:* himasi.bsi.ac.id
-
-📞 *Kontak Pengurus:*
+📧 *Email:* himasi.yog@bsi.ac.id
+📱 *Instagram:* @himasi_ubsiyogyakarta
+🌐 *Website:* himasiygy.bsi.ac.id
+📞 *Kontak Pengurus:* 083101487796
 Untuk informasi lebih lanjut atau pertanyaan, silakan hubungi pengurus HIMASI melalui media sosial atau email di atas.
 
 👥 Mari bergabung bersama kami dan kembangkan potensimu di bidang Sistem Informasi! 🚀
