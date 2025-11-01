@@ -180,6 +180,10 @@ console.error('Error answering callback query:', answerError);
 bot.on('message', async (msg) => {
 const chatId = msg.chat.id;
 const userState = userStates.get(chatId);
+// Abaikan jika pesan adalah command /start (sudah ditangani oleh bot.onText)
+if (msg.text && msg.text.startsWith('/start')) {
+return;
+}
 try {
 if (userState === 'waiting_for_order') {
 await handleOrder(msg);
@@ -187,9 +191,13 @@ await handleOrder(msg);
 await handleConfirmation(msg);
 } else if (userState === 'waiting_for_contact') {
 await handleContact(msg);
+} else {
+// Jika tidak ada state dan pesan bukan command, tampilkan fallback
+if (msg.text && !msg.text.startsWith('/')) {
+await fallback(chatId);
+}
 }
 } catch (error) {
-
 console.error('Error handling message:', error);
 try {
 await bot.sendMessage(chatId, 'Terjadi kesalahan, silakan coba lagi atau gunakan menu utama.', mainMenu);
