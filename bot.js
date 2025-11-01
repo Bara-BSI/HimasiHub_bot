@@ -1,6 +1,7 @@
 // =============================
-// WARTEG MANTAP JIWA BOT 🍛
-// Telegram Bot Version
+// HIMASI HUB BOT 📚
+// Telegram Bot - Himpunan Mahasiswa Sistem Informasi
+// Universitas Bina Sarana Informatika PSDKU Kota Yogyakarta
 // =============================
 require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
@@ -16,14 +17,13 @@ bot.on('polling_error', (error) => {
 console.error('Polling error:', error);
 });
 // =============================
-// Data Menu Warteg
+// Data Informasi HIMASI
 // =============================
-const menu = {
-"Ayam Goreng": 12000,
-"Ikan Lele Goreng": 10000,
-"Telur Dadar": 8000,
-"Sayur Asem": 5000,
-"Nasi Putih": 4000
+const informasiHimasi = {
+"Tentang HIMASI": "Himpunan Mahasiswa Sistem Informasi adalah organisasi mahasiswa yang menghimpun dan mewadahi mahasiswa Program Studi Sistem Informasi di Universitas Bina Sarana Informatika PSDKU Kota Yogyakarta.",
+"Visi": "Menjadi organisasi mahasiswa yang unggul, profesional, dan berkarakter dalam mengembangkan potensi mahasiswa Sistem Informasi untuk kemajuan teknologi informasi.",
+"Misi": "1. Meningkatkan kualitas akademik dan non-akademik mahasiswa\n2. Mengembangkan soft skills dan hard skills mahasiswa\n3. Membangun jaringan dengan dunia industri dan akademisi\n4. Menjalin silaturahmi antar anggota dan alumni",
+"Program Kerja": "1. Seminar dan Workshop Teknologi\n2. Kegiatan Pengabdian Masyarakat\n3. Lomba dan Kompetisi IT\n4. Diskusi dan Sharing Session\n5. Kegiatan Sosial dan Kepedulian"
 };
 // =============================
 // State Management
@@ -36,11 +36,10 @@ const userStates = new Map(); // chatId -> state
 const mainMenu = {
 reply_markup: {
 inline_keyboard: [
-[{ text: "🍛 Lihat Menu", callback_data: "lihat_menu" }],
-[{ text: "🛒 Pesan Makanan", callback_data: "pesan_makanan" }],
-[{ text: "📍 Info Lokasi & Jam Buka", callback_data: "info_lokasi"
-}],
-[{ text: "📞 Hubungi Admin", callback_data: "hubungi_admin" }]
+[{ text: "📚 Tentang HIMASI", callback_data: "tentang_himasi" }],
+[{ text: "🎯 Program Kerja", callback_data: "program_kerja" }],
+[{ text: "📍 Info & Kontak", callback_data: "info_kontak" }],
+[{ text: "👥 Daftar Anggota", callback_data: "daftar_anggota" }]
 ]
 }
 };
@@ -51,8 +50,12 @@ bot.onText(/\/start/, async (msg) => {
 const chatId = msg.chat.id;
 try {
 await bot.sendMessage(chatId, `
-🍽️ Halo, selamat datang di *Warteg Mantap Jiwa*!
-Saya *WartegBot*, siap bantu kamu pesan makanan enak dan hemat 😋
+👋 *Selamat Datang di HIMASI HUB Bot*!
+
+Halo! Saya adalah bot resmi *Himpunan Mahasiswa Sistem Informasi (HIMASI)*
+Universitas Bina Sarana Informatika PSDKU Kota Yogyakarta 📚
+
+Saya siap membantu kamu mendapatkan informasi tentang organisasi kami.
 Silakan pilih menu di bawah ini:
 `, { parse_mode: 'Markdown', ...mainMenu });
 } catch (error) {
@@ -67,46 +70,90 @@ const chatId = query.message.chat.id;
 const action = query.data;
 try {
 switch (action) {
-// === FLOW 2: LIHAT MENU ===
-case 'lihat_menu':
+// === TENTANG HIMASI ===
+case 'tentang_himasi':
 await bot.sendMessage(chatId, `
-🍛 *Menu Hari Ini:*
-🍗 Ayam Goreng – Rp12.000
-🐟 Ikan Lele Goreng – Rp10.000
-🍳 Telur Dadar – Rp8.000
-🥦 Sayur Asem – Rp5.000
-🍚 Nasi Putih – Rp4.000
-Ketik *pesan* untuk lanjut order makanan.
-`, { parse_mode: 'Markdown' });
+📚 *Tentang HIMASI*
+
+*Himpunan Mahasiswa Sistem Informasi (HIMASI)* adalah organisasi mahasiswa yang menghimpun dan mewadahi mahasiswa Program Studi Sistem Informasi di Universitas Bina Sarana Informatika PSDKU Kota Yogyakarta.
+
+*Visi:*
+Menjadi organisasi mahasiswa yang unggul, profesional, dan berkarakter dalam mengembangkan potensi mahasiswa Sistem Informasi untuk kemajuan teknologi informasi.
+
+*Misi:*
+1. Meningkatkan kualitas akademik dan non-akademik mahasiswa
+2. Mengembangkan soft skills dan hard skills mahasiswa
+3. Membangun jaringan dengan dunia industri dan akademisi
+4. Menjalin silaturahmi antar anggota dan alumni
+
+Gunakan menu untuk informasi lebih lanjut! 📖
+`, { parse_mode: 'Markdown', ...mainMenu });
 break;
-// === FLOW 3: PESAN MAKANAN ===
-case 'pesan_makanan':
+// === PROGRAM KERJA ===
+case 'program_kerja':
+await bot.sendMessage(chatId, `
+🎯 *Program Kerja HIMASI*
+
+Berikut adalah program kerja utama HIMASI:
+1. *Seminar dan Workshop Teknologi*
+   - Workshop pemrograman
+   - Seminar IT terkini
+   - Training skill development
+
+2. *Kegiatan Pengabdian Masyarakat*
+   - Pelatihan komputer untuk masyarakat
+   - Digitalisasi UMKM
+   - Program literasi digital
+
+3. *Lomba dan Kompetisi IT*
+   - Hackathon
+   - Competitive Programming
+   - UI/UX Design Competition
+
+4. *Diskusi dan Sharing Session*
+   - Tech talk
+   - Career development
+   - Sharing alumni
+
+5. *Kegiatan Sosial dan Kepedulian*
+   - Bakti sosial
+   - Donasi dan kepedulian sosial
+
+Untuk informasi detail, hubungi admin kami! 💬
+`, { parse_mode: 'Markdown', ...mainMenu });
+break;
+// === INFO & KONTAK ===
+case 'info_kontak':
+await bot.sendMessage(chatId, `
+📍 *Info & Kontak HIMASI*
+
+🏛️ *Universitas Bina Sarana Informatika*
+PSDKU Kota Yogyakarta
+Program Studi Sistem Informasi
+
+📧 *Email:* himasi.bsi.yogyakarta@gmail.com
+📱 *Instagram:* @himasi_bsi_yogyakarta
+🌐 *Website:* himasi.bsi.ac.id
+
+📞 *Kontak Pengurus:*
+Untuk informasi lebih lanjut atau pertanyaan, silakan hubungi pengurus HIMASI melalui media sosial atau email di atas.
+
+👥 Mari bergabung bersama kami dan kembangkan potensimu di bidang Sistem Informasi! 🚀
+`, { parse_mode: 'Markdown', ...mainMenu });
+break;
+// === DAFTAR ANGGOTA ===
+case 'daftar_anggota':
 
 userStates.set(chatId, 'waiting_for_order');
 await bot.sendMessage(chatId, `
-Baik! Ketik pesanan kamu ya, contoh:
-*Pesan Ayam Goreng 1, Nasi 1, Sayur Asem 1*
+👥 *Daftar Sebagai Anggota HIMASI*
+
+Silakan ketik data diri kamu dengan format berikut:
+*Nama | NIM | Semester | No. HP*
+
+Contoh:
+*Ahmad Rizki | 12345678 | 3 | 081234567890*
 `, { parse_mode: 'Markdown' });
-break;
-// === FLOW 4: INFO LOKASI ===
-case 'info_lokasi':
-await bot.sendMessage(chatId, `
-🕒 Kami buka setiap hari pukul *07.00–21.00 WIB*
-📍 Alamat: *Jl. Mawar No. 123, Cibubur*
-
-📌 Google Maps: [bit.ly/warteg-mantapjiwa](https://bit.ly/warteg-
-mantapjiwa)
-
-`, { parse_mode: 'Markdown', ...mainMenu });
-break;
-// === FLOW 5: HUBUNGI ADMIN ===
-case 'hubungi_admin':
-await bot.sendMessage(chatId, `
-Untuk pertanyaan atau pesanan besar (catering):
-📞 *0812-3456-7890*
-📧 *wartegmantapjiwa@gmail.com*
-Kami siap membantu Anda! 🍛
-`, { parse_mode: 'Markdown', ...mainMenu });
 break;
 default:
 await fallback(chatId);
@@ -146,32 +193,35 @@ console.error('Error sending error message:', sendError);
 }
 });
 // =============================
-// FLOW 3.1: PROSES PESAN MAKANAN
+// FLOW 3.1: PROSES DAFTAR ANGGOTA
 // =============================
 async function handleOrder(msg) {
 const chatId = msg.chat.id;
 const orderText = msg.text;
 try {
-const items = parseOrder(orderText);
-const total = calculateTotal(items);
-if (total === 0) {
+// Parse data pendaftaran (format: Nama | NIM | Semester | No. HP)
+const parts = orderText.split('|').map(p => p.trim());
+if (parts.length < 4) {
 userStates.delete(chatId);
-await bot.sendMessage(chatId, "Maaf, saya tidak menemukan item valid dari pesanan kamu 😅", mainMenu);
+await bot.sendMessage(chatId, "Format tidak lengkap. Silakan gunakan format:\n*Nama | NIM | Semester | No. HP*", { parse_mode: 'Markdown', ...mainMenu });
 return;
 }
-const orderSummary = items.map(i => `${i.name}
-x${i.quantity}`).join(" + ");
+const [nama, nim, semester, noHp] = parts;
 userStates.set(chatId, 'waiting_for_confirmation');
-userStates.set(`${chatId}_order`, { items, total, orderSummary });
+userStates.set(`${chatId}_order`, { nama, nim, semester, noHp });
 await bot.sendMessage(chatId, `
-✅ Pesanan kamu: ${orderSummary}
-💰 Total: Rp${total.toLocaleString('id-ID')}
-Mau lanjut checkout? (ya/tidak)
+✅ *Data Pendaftaran:*
+📝 Nama: ${nama}
+🆔 NIM: ${nim}
+📚 Semester: ${semester}
+📱 No. HP: ${noHp}
+
+Apakah data di atas sudah benar? (ya/tidak)
 `, { parse_mode: 'Markdown' });
 } catch (error) {
 console.error('Error in handleOrder:', error);
 userStates.delete(chatId);
-await bot.sendMessage(chatId, "Terjadi kesalahan saat memproses pesanan. Silakan coba lagi.", mainMenu);
+await bot.sendMessage(chatId, "Terjadi kesalahan saat memproses data. Silakan coba lagi.", mainMenu);
 }
 }
 async function handleConfirmation(msg) {
@@ -180,12 +230,11 @@ const reply = msg.text.toLowerCase();
 try {
 if (reply === "ya") {
 userStates.set(chatId, 'waiting_for_contact');
-await bot.sendMessage(chatId, "Silakan kirim *nama dan nomor HP* untuk konfirmasi pesanan.", { parse_mode: 'Markdown' });
+await bot.sendMessage(chatId, "Terima kasih! Data kamu sudah tercatat. Pengurus HIMASI akan menghubungi kamu segera untuk proses selanjutnya.\n\nApakah ada pertanyaan atau hal lain yang ingin ditanyakan?", { parse_mode: 'Markdown' });
 } else {
 userStates.delete(chatId);
 userStates.delete(`${chatId}_order`);
-
-await bot.sendMessage(chatId, "Baik, pesanan dibatalkan. Silakan lihat menu lain atau kembali ke menu utama.", mainMenu);
+await bot.sendMessage(chatId, "Baik, pendaftaran dibatalkan. Silakan lihat informasi lain atau kembali ke menu utama.", mainMenu);
 }
 } catch (error) {
 console.error('Error in handleConfirmation:', error);
@@ -199,45 +248,27 @@ const chatId = msg.chat.id;
 const contact = msg.text;
 try {
 userStates.delete(chatId);
+const orderData = userStates.get(`${chatId}_order`);
 userStates.delete(`${chatId}_order`);
 await bot.sendMessage(chatId, `
-Terima kasih ${contact.split(" ")[0]}! 🙏
-Admin kami akan segera menghubungi kamu untuk konfirmasi pesanan.
-🍽️ *Terima kasih sudah pesan di Warteg Mantap Jiwa!* 💚
+Terima kasih ${orderData ? orderData.nama : ''}! 🙏
+
+Data pendaftaran kamu sudah tercatat dengan baik. Pengurus HIMASI akan segera menghubungi kamu melalui nomor HP yang telah kamu berikan untuk proses selanjutnya.
+
+📚 *Selamat bergabung dengan HIMASI!*
+Bersama kita kembangkan potensi di bidang Sistem Informasi! 🚀
+
+Gunakan menu untuk informasi lebih lanjut tentang HIMASI.
 `, { parse_mode: 'Markdown', ...mainMenu });
 } catch (error) {
 console.error('Error in handleContact:', error);
-await bot.sendMessage(chatId, "Terima kasih! Admin akan menghubungi Anda.", mainMenu);
+await bot.sendMessage(chatId, "Terima kasih! Pengurus akan menghubungi Anda segera.", mainMenu);
 }
 }
 // =============================
-// Fungsi Parsing & Hitung Total
+// Fungsi Helper (Jika Diperlukan)
 // =============================
-function parseOrder(orderText) {
-const foundItems = [];
-const orderLower = orderText.toLowerCase();
-for (let key in menu) {
-const itemLower = key.toLowerCase();
-if (orderLower.includes(itemLower)) {
-// Cari jumlah item dengan regex
-const quantityRegex = new
-RegExp(`(\\d+)\\s*${itemLower.replace(/\s+/g, '\\s+')}`, 'i');
-const match = orderText.match(quantityRegex);
-const quantity = match ? parseInt(match[1]) : 1;
-foundItems.push({
-name: key,
-price: menu[key],
-quantity: quantity
-});
-}
-}
-return foundItems;
-}
-function calculateTotal(items) {
-
-return items.reduce((sum, item) => sum + (item.price * item.quantity),
-0);
-}
+// Fungsi-fungsi helper dapat ditambahkan di sini jika diperlukan
 // =============================
 // FLOW 6: FALLBACK
 // =============================
@@ -246,13 +277,13 @@ try {
 await bot.sendMessage(chatId, `
 Maaf, saya belum paham maksud kamu 😅
 Silakan pilih menu berikut:
-1️⃣Lihat Menu
-2️⃣Pesan Makanan
-3️⃣Info Lokasi
-4️⃣Hubungi Admin
+1️⃣ Tentang HIMASI
+2️⃣ Program Kerja
+3️⃣ Info & Kontak
+4️⃣ Daftar Anggota
 `, mainMenu);
 } catch (error) {
 console.error('Error in fallback:', error);
 }
 }
-console.log("🤖 Warteg Mantap Jiwa Bot is running...");
+console.log("🤖 HIMASI HUB Bot is running...");
