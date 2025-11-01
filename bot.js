@@ -76,7 +76,7 @@ case 'tentang_himasi':
 await bot.sendMessage(chatId, `
 📚 *Tentang HIMASI*
 
-*HIMASI adalah salah satu organisasi kemahasiswaan yang mewadahi mahasiswa Fakultas Teknik dan Informatika Prodi Sistem Informasi Kampus Yogyakarta Universitas Bina Sarana Informatika dalam bidang akademik maupun non akademik.
+HIMASI adalah salah satu organisasi kemahasiswaan yang mewadahi mahasiswa Fakultas Teknik dan Informatika Prodi Sistem Informasi Kampus Yogyakarta Universitas Bina Sarana Informatika dalam bidang akademik maupun non akademik.
 
 *Visi:*
 Menjadikan organisasi dengan meningkatkan jiwa kreatif dan komunikatif yang akan menghasilkan inovasi baru dan berkualitas. 
@@ -139,7 +139,7 @@ PSDKU Kota Yogyakarta
 Program Studi Sistem Informasi
 
 📧 *Email:* himasi.yog@bsi.ac.id
-📱 *Instagram:* @himasi_ubsiyogyakarta
+📱 *Instagram:* @himasi\\_ubsiyogyakarta
 🌐 *Website:* himasiygy.bsi.ac.id
 📞 *Kontak Pengurus:* 083101487796
 Untuk informasi lebih lanjut atau pertanyaan, silakan hubungi pengurus HIMASI melalui media sosial atau email di atas.
